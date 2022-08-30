@@ -1,1 +1,1 @@
-import './tvmaze.css';
+import './styles/tvmaze.css';
