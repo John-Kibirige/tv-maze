@@ -5,12 +5,14 @@ import generateSingleShow from './modules/show.js';
 
 const showItems = document.querySelector('.show-items');
 const tvMazeLogo = document.querySelector('.logo');
+const showCount = document.querySelector('.show-count');
 
 tvMazeLogo.src = logo;
 
 // fetch data and display it on the ui
 const displayMovies = () => {
   getData().then((responses) => {
+    showCount.innerText = `${responses.length}`;
     responses.forEach((response) => {
       let {
         id,

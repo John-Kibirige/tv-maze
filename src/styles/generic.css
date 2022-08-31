@@ -77,3 +77,9 @@ footer p {
     font-size: 21px;
   }
 }
+
+.show-count {
+  display: inline-block;
+  color: #f00;
+  font-weight: 500;
+}
