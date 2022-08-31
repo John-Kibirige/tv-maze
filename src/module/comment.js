@@ -2,8 +2,11 @@
 
 const main = document.querySelector("main");
 const popup = document.querySelector(".popup-dialog");
+const formContainer = document.createElement("form");
+formContainer.className = "form";
+
 const commenuURL =
-  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/SAizruPhaIEPZauftdOO/comments";
+  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/wlzRuqIYJW5Ad0SE0h4v/comments";
 const tv = [
   {
     id: 1,
@@ -35,18 +38,20 @@ const tv = [
   },
 ];
 
-const showPopupDialog = (id) => {
+const showPopupDialog = async (id) => {
   const newMovies = tv[0];
+  const allComment = (await getComment(newMovies["id"])) ?? [];
+  const commentCounter = document.createElement("h2");
   main.style.display = "none";
   popup.style.display = "block";
 
   popup.innerHTML = `
         <div class="popup-top">
             <img src="${newMovies["image"]["medium"]}" alt="image">
-            <svg class="close-btn" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="54px" height="54px">
-                <path
-                    d="M 12 8 L 8 12 L 24.666016 32 L 8 52 L 12 56 L 32 39.333984 L 52 56 L 56 52 L 39.333984 32 L 56 12 L 52 8 L 32 24.666016 L 12 8 z" />
-            </svg>
+                <svg class="close-btn" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="54px" height="54px">
+                    <path
+                        d="M 12 8 L 8 12 L 24.666016 32 L 8 52 L 12 56 L 32 39.333984 L 52 56 L 56 52 L 39.333984 32 L 56 12 L 52 8 L 32 24.666016 L 12 8 z" />
+                </svg>
         </div>
             <h2 class="title"> ${newMovies["name"]}</h2>
         <ul class="detail">
@@ -54,29 +59,40 @@ const showPopupDialog = (id) => {
             <li>Air Date:  ${newMovies["airdate"]}</li>
             <li>Airtime: ${newMovies["airtime"]}</li>
             <li>Rating: ${newMovies["rating"]["average"]}</li>
-        </ul>
+        </ul>`;
 
-          <h2 class="comment-count title">Comment (0)</h2>
+  commentCounter.className = "comment-count title";
+  commentCounter.innerHTML = `Comment (${allComment.length})`;
+  popup.appendChild(commentCounter);
 
-        <p class="comment-list">I love it.</p>
-        <p class="comment-list">Great work.</p>
-        <p class="comment-list">amazing</p>
+  allComment.forEach((movie) => {
+    const para = document.createElement("p");
+    para.className = "comment-list";
+    para.innerHTML = `${movie["username"]} : ${movie["comment"]}`;
+    popup.appendChild(para);
+  });
 
-        <h2 class="title">Add Comment</h2>
-        <form action="#" class="form">
-            <input type="text" name="name" required placeholder="Your name" class="your-name" id="your-name">
-            <textarea name="message" class="message" required placeholder="Your Insight" id="message" cols="30" rows="10">dsd</textarea>
-            <button type="submit" data-id='${newMovies["id"]}' class="add-comment">Comment</button>
-        </form>`;
+  formContainer.innerHTML = `
+            <h2 class="title">Add Comment</h2>
+          <label>  <input type="text" name="name" required placeholder="Your name" class="your-name" id="your-name"> <span class='empty-name'> * Required</spa> </label>
+         <label>   <textarea name="message" class="message" required placeholder="Your Insight" id="message" cols="30" rows="10"></textarea> <span class='empty-comment'> * Required</spa></label>
+          <button type="submit" data-id='${newMovies["id"]}' class="add-comment">Comment</button>
+       `;
+
+  popup.appendChild(formContainer);
 };
 
+const isValid = (username, comment) => {};
 
 popup.addEventListener("click", (e) => {
+  e.preventDefault();
   if (e.target.classList.contains("add-comment")) {
     const userName = document.querySelector("input").value;
-    const message = document.querySelector("input").value;
+    const message = document.querySelector("textarea").value;
+    const emptyUser = document.querySelector(".empty-name");
+    const emptyComment = document.querySelector(".empty-comment");
     const id = e.target.dataset.id;
-    addComment(id, userName, message);
+   
   }
 });
 
@@ -88,26 +104,31 @@ popup.addEventListener("click", (e) => {
   }
 });
 
-const addComment = async (movieID,userName, message) => {
- try {
-   const result = await fetch(commenuURL, {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify({
-       item_id: movieID,
-       username: userName,
-       comment: message,
-     }),
-   });
+const addComment = async (movieID, userName, message) => {
+  try {
+    await fetch(commenuURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        item_id: movieID,
+        username: userName,
+        comment: message,
+      }),
+    });
+  } catch (error) {}
+};
 
- } catch (error) {
-  console.log(error)
- }
+const getComment = async (id) => {
+  const result = await fetch(commenuURL + `?item_id=${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-}
-
-
+  return await result.json();
+};
 
 module.exports = { tv, showPopupDialog };
