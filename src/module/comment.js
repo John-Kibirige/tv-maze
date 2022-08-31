@@ -1,12 +1,15 @@
 //https://api.tvmaze.com/seasons/1/episodes
-
 const main = document.querySelector("main");
 const popup = document.querySelector(".popup-dialog");
 const formContainer = document.createElement("form");
+const body = document.querySelector("body");
+const commentContainer = document.createElement("div");
+import close from "../../images/close.png";
+
 formContainer.className = "form";
 
 const commenuURL =
-  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/wlzRuqIYJW5Ad0SE0h4v/comments";
+  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/jlXT5H1Goew47u6aRNRF/comments";
 const tv = [
   {
     id: 1,
@@ -38,20 +41,21 @@ const tv = [
   },
 ];
 
-const showPopupDialog = async (id) => {
-  const newMovies = tv[0];
-  const allComment = (await getComment(newMovies["id"])) ?? [];
+export const showPopupDialog = async (id) => {
   const commentCounter = document.createElement("h2");
+  const newMovies = tv[0];
+  const comments = await getComment(newMovies["id"]);
+  // let comments;
+
+  body.style.backgroundColor = "#2f2f2f";
   main.style.display = "none";
   popup.style.display = "block";
 
   popup.innerHTML = `
         <div class="popup-top">
-            <img src="${newMovies["image"]["medium"]}" alt="image">
-                <svg class="close-btn" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="54px" height="54px">
-                    <path
-                        d="M 12 8 L 8 12 L 24.666016 32 L 8 52 L 12 56 L 32 39.333984 L 52 56 L 56 52 L 39.333984 32 L 56 12 L 52 8 L 32 24.666016 L 12 8 z" />
-                </svg>
+            <img src="${newMovies["image"]["medium"]}" class='popup-image' alt="image">
+             <img src="${close}" class='close-btn' alt="image">
+               
         </div>
             <h2 class="title"> ${newMovies["name"]}</h2>
         <ul class="detail">
@@ -61,17 +65,18 @@ const showPopupDialog = async (id) => {
             <li>Rating: ${newMovies["rating"]["average"]}</li>
         </ul>`;
 
-  commentCounter.className = "comment-count title";
-  commentCounter.innerHTML = `Comment (${allComment.length})`;
+  commentCounter.className = "title";
+  commentCounter.innerHTML = `Comment (<span class='comment-count'>${comments.length}</span>)`;
   popup.appendChild(commentCounter);
 
-  allComment.forEach((movie) => {
+  comments.forEach((movie) => {
     const para = document.createElement("p");
     para.className = "comment-list";
-    para.innerHTML = `${movie["username"]} : ${movie["comment"]}`;
-    popup.appendChild(para);
+    para.innerHTML = `${movie["creation_date"]}  ${movie["username"]} : ${movie["comment"]}`;
+    commentContainer.appendChild(para);
   });
 
+  popup.appendChild(commentContainer);
   formContainer.innerHTML = `
             <h2 class="title">Add Comment</h2>
           <label>  <input type="text" name="name" required placeholder="Your name" class="your-name" id="your-name"> <span class='empty-name'> * Required</spa> </label>
@@ -81,8 +86,6 @@ const showPopupDialog = async (id) => {
 
   popup.appendChild(formContainer);
 };
-
-const isValid = (username, comment) => {};
 
 popup.addEventListener("click", (e) => {
   e.preventDefault();
@@ -103,9 +106,10 @@ popup.addEventListener("click", (e) => {
       emptyUser.style.display = "none";
     } else {
       addComment(id, userName, message);
-      formContainer.clear();
       emptyComment.style.display = "none";
       emptyUser.style.display = "none";
+      document.querySelector("input").value = "";
+      document.querySelector("textarea").value = "";
     }
   }
 });
@@ -115,10 +119,13 @@ popup.addEventListener("click", (e) => {
   if (e.target.classList.contains("close-btn")) {
     document.querySelector("main").style.display = "flex";
     document.querySelector(".popup-dialog").style.display = "none";
+    body.style.backgroundColor = "#fff";
   }
 });
 
 const addComment = async (movieID, userName, message) => {
+  const count = document.querySelector(".comment-count");
+  const countValue = +count.textContent.trim();
   try {
     await fetch(commenuURL, {
       method: "POST",
@@ -131,18 +138,32 @@ const addComment = async (movieID, userName, message) => {
         comment: message,
       }),
     });
+    count.innerHTML = `${countValue + 1}`;
+
+    const para = document.createElement("p");
+    para.className = "comment-list";
+    const today = new Date();
+
+    para.innerHTML = `${
+      today.getFullYear() + "-" + (+today.getMonth() + 1) + "-" + today.getDate()
+    } ${userName} : ${message}`;
+    commentContainer.appendChild(para);
   } catch (error) {}
 };
 
 const getComment = async (id) => {
-  const result = await fetch(commenuURL + `?item_id=${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  try {
+    const result = await fetch(commenuURL + `?item_id=${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  return await result.json();
+    const comments = await await result.json();
+    if (comments['error']) {
+      return [];
+    } else return comments;
+  } catch (error) {
+  }
 };
-
-module.exports = { tv, showPopupDialog };
