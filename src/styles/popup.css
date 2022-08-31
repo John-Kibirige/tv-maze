@@ -9,6 +9,8 @@ body {
   padding-left: 18px;
   padding-bottom: 32px;
   border: 2px solid #333;
+  background-color: #f7f7f7f1;
+
 }
 
 .popup-top {
@@ -18,9 +20,8 @@ body {
   padding-top: 16px;
 }
 
-.popup-image{
- width: 80%;
-
+.popup-image {
+  width: 80%;
 }
 
 .title {
@@ -35,6 +36,17 @@ body {
   row-gap: 8px;
   padding: 24px 8px;
 }
+ .detail li{
+  font-weight: 700;
+  letter-spacing: 0.03em;
+ }
+
+ .comment-list{
+  font-weight: 500;
+  letter-spacing: 0.03em;
+
+ }
+
 
 .form {
   display: flex;
