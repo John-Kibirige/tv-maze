@@ -26,6 +26,8 @@ const displayMovies = () => {
   });
 };
 
+// implement the like icon
+
 window.addEventListener('load', () => {
   displayMovies();
 });

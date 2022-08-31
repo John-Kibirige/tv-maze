@@ -30,7 +30,7 @@
 }
 
 .comment-btn {
-  background: #f00;
+  background: var(--primary-txt);
   color: white;
   padding: 10px;
   border: none;
