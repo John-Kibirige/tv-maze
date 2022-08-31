@@ -1,8 +1,9 @@
 //https://api.tvmaze.com/seasons/1/episodes
-const btnClose = document.querySelector(".close-btn");
-const addComment = document.querySelector(".add-comment");
+
 const main = document.querySelector("main");
 const popup = document.querySelector(".popup-dialog");
+const commenuURL =
+  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/SAizruPhaIEPZauftdOO/comments";
 const tv = [
   {
     id: 1,
@@ -35,54 +36,78 @@ const tv = [
 ];
 
 const showPopupDialog = (id) => {
-//   document.querySelector(".all-comment").addEventListener("click", () => {
-      main.style.display = "none";
-      popup.style.display = 'block';
-      
+  const newMovies = tv[0];
+  main.style.display = "none";
+  popup.style.display = "block";
 
-      popup.innerHTML = `
+  popup.innerHTML = `
         <div class="popup-top">
-            <img src="https://static.tvmaze.com/uploads/images/medium_landscape/1/4388.jpg" alt="">
+            <img src="${newMovies["image"]["medium"]}" alt="image">
             <svg class="close-btn" fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="54px" height="54px">
                 <path
                     d="M 12 8 L 8 12 L 24.666016 32 L 8 52 L 12 56 L 32 39.333984 L 52 56 L 56 52 L 39.333984 32 L 56 12 L 52 8 L 32 24.666016 L 12 8 z" />
             </svg>
         </div>
-            <h2 class="title">Paliot</h2>
+            <h2 class="title"> ${newMovies["name"]}</h2>
         <ul class="detail">
-            <li>Type: Regular</li>
-            <li>Air Date: 2013-06-24</li>
-            <li>Airtime: 22:00</li>
-            <li>Rating: 7.7</li>
+            <li>Type: ${newMovies["type"]}</li>
+            <li>Air Date:  ${newMovies["airdate"]}</li>
+            <li>Airtime: ${newMovies["airtime"]}</li>
+            <li>Rating: ${newMovies["rating"]["average"]}</li>
         </ul>
-        <h2 class="comment-count title">Comment (0)</h2>
+
+          <h2 class="comment-count title">Comment (0)</h2>
+
         <p class="comment-list">I love it.</p>
         <p class="comment-list">Great work.</p>
         <p class="comment-list">amazing</p>
-        <h2 class="title">Add Comment</h2>
 
+        <h2 class="title">Add Comment</h2>
         <form action="#" class="form">
-            <input type="text" name="name" placeholder="Your name" class="your-name" id="your-name">
-            <textarea name="message" class="message" placeholder="Your Insight" id="message" cols="30" rows="10">dsd</textarea>
-            <button type="submit" class="add-comment">Comment</button>
+            <input type="text" name="name" required placeholder="Your name" class="your-name" id="your-name">
+            <textarea name="message" class="message" required placeholder="Your Insight" id="message" cols="30" rows="10">dsd</textarea>
+            <button type="submit" data-id='${newMovies["id"]}' class="add-comment">Comment</button>
         </form>`;
-      
-    
-//   });
 };
 
+
 popup.addEventListener("click", (e) => {
-    if (e.target.classList.contains('add-comment')) {
-      alert('meshu')
+  if (e.target.classList.contains("add-comment")) {
+    const userName = document.querySelector("input").value;
+    const message = document.querySelector("input").value;
+    const id = e.target.dataset.id;
+    addComment(id, userName, message);
   }
 });
 
 popup.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (e.target.classList.contains("close-btn")) {
-      document.querySelector("main").style.display = "flex";
-      document.querySelector(".popup-dialog").style.display = "none";
-    }
+  e.preventDefault();
+  if (e.target.classList.contains("close-btn")) {
+    document.querySelector("main").style.display = "flex";
+    document.querySelector(".popup-dialog").style.display = "none";
+  }
 });
+
+const addComment = async (movieID,userName, message) => {
+ try {
+   const result = await fetch(commenuURL, {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({
+       item_id: movieID,
+       username: userName,
+       comment: message,
+     }),
+   });
+
+ } catch (error) {
+  console.log(error)
+ }
+
+}
+
+
 
 module.exports = { tv, showPopupDialog };
