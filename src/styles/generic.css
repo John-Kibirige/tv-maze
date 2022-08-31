@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap');
 
+:root {
+  --bg-dark: #2b2727;
+  --black: #000000;
+  --text-color: #fff;
+}
 html {
   box-sizing: border-box;
   font-size: 100%;
@@ -16,6 +21,8 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  background-color: var(--bg-dark);
+  color: var(--text-color);
 }
 
 main {
@@ -34,7 +41,7 @@ header {
   align-items: center;
   padding: 13px 49px;
   margin-bottom: 12px;
-  box-shadow: 5px 1px 7px rgba(0, 0, 0, 0.4);
+  background-color: var(--black);
 }
 
 header ul {
@@ -45,7 +52,7 @@ header ul {
 }
 header ul a {
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
 }
 
 header ul li.active {
