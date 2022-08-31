@@ -92,7 +92,21 @@ popup.addEventListener("click", (e) => {
     const emptyUser = document.querySelector(".empty-name");
     const emptyComment = document.querySelector(".empty-comment");
     const id = e.target.dataset.id;
-   
+    if (userName === "" && message === "") {
+      emptyComment.style.display = "block";
+      emptyUser.style.display = "block";
+    } else if (userName === "") {
+      emptyUser.style.display = "block";
+      emptyComment.style.display = "none";
+    } else if (message === "") {
+      emptyComment.style.display = "block";
+      emptyUser.style.display = "none";
+    } else {
+      addComment(id, userName, message);
+      formContainer.clear();
+      emptyComment.style.display = "none";
+      emptyUser.style.display = "none";
+    }
   }
 });
 
