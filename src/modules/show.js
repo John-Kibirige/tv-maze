@@ -12,6 +12,7 @@ const generateSingleShow = (imageUrl, name, id) => {
        <p class="like-text"><span id="span${id}" class="num-likes">0</span> likes</p>
         <button class="comment-btn" id="comm${id}" >Comments</button>
     `;
+
   return li;
 };
 

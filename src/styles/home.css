@@ -1,5 +1,6 @@
 .like-icon {
   width: 18px;
+  cursor: pointer;
 }
 
 .like-icon.active {

@@ -1,13 +1,11 @@
 const postLike = async (data) => {
-  const response = await fetch(
+  await fetch(
     'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/UPEvCwsPcVAVY9nzsrMT/likes/',
     {
       method: 'POST',
       body: JSON.stringify(data),
     }
   );
-
-  return response;
 };
 
 const getLikes = async () => {
