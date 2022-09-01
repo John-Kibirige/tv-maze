@@ -1,4 +1,3 @@
-import './styles/tvmaze.css';
 import logo from './assets/tv-maze-logo.svg';
 import getData from './modules/data.js';
 import generateSingleShow from './modules/show.js';
