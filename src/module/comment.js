@@ -123,9 +123,22 @@ popup.addEventListener("click", (e) => {
   }
 });
 
-const addComment = async (movieID, userName, message) => {
+const updateCounter = (userName,message) => {
   const count = document.querySelector(".comment-count");
   const countValue = +count.textContent.trim();
+  count.innerHTML = `${countValue + 1}`;
+  const para = document.createElement("p");
+  para.className = "comment-list";
+  const today = new Date();
+
+  para.innerHTML = `${
+    today.getFullYear() + "-" + (+today.getMonth() + 1) + "-" + today.getDate()
+  } ${userName} : ${message}`;
+  commentContainer.appendChild(para);
+};
+
+const addComment = async (movieID, userName, message) => {
+
   try {
     await fetch(commenuURL, {
       method: "POST",
@@ -138,18 +151,13 @@ const addComment = async (movieID, userName, message) => {
         comment: message,
       }),
     });
-    count.innerHTML = `${countValue + 1}`;
 
-    const para = document.createElement("p");
-    para.className = "comment-list";
-    const today = new Date();
-
-    para.innerHTML = `${
-      today.getFullYear() + "-" + (+today.getMonth() + 1) + "-" + today.getDate()
-    } ${userName} : ${message}`;
-    commentContainer.appendChild(para);
+    updateCounter(userName, message);
+ 
   } catch (error) {}
 };
+
+
 
 const getComment = async (id) => {
   try {
@@ -161,9 +169,8 @@ const getComment = async (id) => {
     });
 
     const comments = await await result.json();
-    if (comments['error']) {
+    if (comments["error"]) {
       return [];
     } else return comments;
-  } catch (error) {
-  }
+  } catch (error) {}
 };
