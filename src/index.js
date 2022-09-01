@@ -37,7 +37,7 @@ const displayMovies = async () => {
       showItems.appendChild(singleItem);
     });
   } finally {
-    // add listener to like icon after rendering all the movies
+    // add listener to like icon
     const likeIcons = document.querySelectorAll('.like-icon');
     likeIcons.forEach((icon) => {
       icon.addEventListener('click', (e) => {
