@@ -34,7 +34,7 @@ header {
   display: flex;
   margin: 0 auto;
   align-items: center;
-  padding: 13px 49px;
+  padding-inline: 13px;
   margin-bottom: 12px;
   background-color: var(--black);
 }
@@ -45,6 +45,7 @@ header ul {
   column-gap: 16px;
   margin-left: auto;
 }
+
 header ul a {
   text-decoration: none;
   color: var(--text-color);
@@ -74,13 +75,15 @@ footer p {
 }
 
 @media (min-width: 768px) {
-  header {
-    padding: 30px;
-  }
   ul {
     column-gap: 85px;
     margin-right: 37px;
     font-size: 21px;
+  }
+
+  header ul li {
+    margin-right: 38px;
+    font-size: 20px;
   }
 }
 

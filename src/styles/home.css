@@ -28,6 +28,7 @@
 .like-text {
   text-align: right;
   margin-block: 10px;
+  font-size: 14px;
 }
 
 .comment-btn {
@@ -58,6 +59,6 @@
   }
 
   .movie-title {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
