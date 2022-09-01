@@ -45,7 +45,7 @@ export const showPopupDialog = async (id) => {
   const commentCounter = document.createElement("h2");
   const newMovies = tv[0];
   const comments = await getComment(newMovies["id"]);
-  // let comments;
+  const totalComment = comments.length;
 
   body.style.backgroundColor = "#2f2f2f";
   main.style.display = "none";
@@ -66,7 +66,7 @@ export const showPopupDialog = async (id) => {
         </ul>`;
 
   commentCounter.className = "title";
-  commentCounter.innerHTML = `Comment (<span class='comment-count'>${comments.length}</span>)`;
+  commentCounter.innerHTML = `Comment (<span class='comment-count'>${totalComment}</span>)`;
   popup.appendChild(commentCounter);
 
   comments.forEach((movie) => {
