@@ -25,4 +25,4 @@ const addLike = (id) => {
   postLike(data);
 };
 
-export { getLikes, addLike };
+export { getLikes, addLike, postLike };
