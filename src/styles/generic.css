@@ -29,6 +29,7 @@ body {
 
 main {
   min-height: 100vh;
+  margin-top: 54px;
 }
 
 header {
@@ -71,6 +72,8 @@ footer {
   column-gap: 8px;
   text-align: left;
   align-items: center;
+  background-color: var(--black);
+  padding: 6px;
 }
 
 footer p {
@@ -88,10 +91,10 @@ footer p {
     margin-right: 38px;
     font-size: 20px;
   }
-}
 
-main {
-  margin-top: 52px;
+  footer {
+    padding: 12px;
+  }
 }
 
 .show-count {

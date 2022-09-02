@@ -16,7 +16,6 @@
   border-radius: 7px;
   background: #1e1d1d;
   box-shadow: 1px 1px 16px var(--black);
-
   height: 90%;
 }
 
@@ -68,5 +67,11 @@
 
   .movie-title {
     font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .show-items li {
+    margin-bottom: 12px;
   }
 }
