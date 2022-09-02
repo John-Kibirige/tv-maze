@@ -1,17 +1,20 @@
-const commenuURL =
-  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/W1bATIF3NbkGkB344Lpb/comments";
-export let getComment = async (id) => {
+const commenuURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/W1bATIF3NbkGkB344Lpb/comments';
+const getComment = async (id) => {
   try {
-    const result = await fetch(commenuURL + `?item_id=${id}`, {
-      method: "GET",
+    const result = await fetch(`${commenuURL}?item_id=${id}`, {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     const comments = await result.json();
-    if (comments["error"]) {
+    if (comments.error) {
       return [];
-    } else return comments;
-  } catch (error) {}
+    } return comments;
+  } catch (error) {
+    return [];
+  }
 };
+
+export default getComment;

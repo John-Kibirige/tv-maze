@@ -1,7 +1,8 @@
-import { getComment } from "./getComment";
+import getComment from './getComment.js';
 
-    export const counter = async (id) => {
-        const comments = await getComment(id);
-      return comments.length;
-    };
+const counter = async (id) => {
+  const comments = await getComment(id);
+  return comments.length;
+};
 
+export default counter;
