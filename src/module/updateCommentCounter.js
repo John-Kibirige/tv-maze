@@ -7,8 +7,8 @@ const updateCounter = (userName, message) => {
   para.className = 'comment-list';
   const today = new Date();
   para.innerHTML = `${
-    `${today.getFullYear()}-${+today.getMonth() + 1}-${today.getDate()}`
-  } ${userName} : ${message}`;
+    `Post Date : ${today.getFullYear()}-${+today.getMonth() + 1}-${today.getDate()}`
+  } Username : ${userName} Comment : ${message}`;
   commentContainer.appendChild(para);
   document.querySelector('.comment-container').appendChild(commentContainer);
 };
