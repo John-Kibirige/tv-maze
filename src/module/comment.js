@@ -1,6 +1,5 @@
 // https://api.tvmaze.com/seasons/1/episodes
 import close from '../../images/close.png';
-import addComment from './addcomment.js';
 import getComment from './getComment.js';
 import counter from './commentcounter.js';
 
@@ -79,7 +78,7 @@ const showPopupDialog = async () => {
   popup.appendChild(commentContainer);
   formContainer.innerHTML = `
             <h2 class="title">Add Comment</h2>
-          <label>  <input type="text" name="name" required placeholder="Your name" class="your-name" id="your-name"> <span class='empty-name'> * Required</spa> </label>
+          <label>  <input type="text" name="name" required placeholder="Your name" class="your-name" id="your-name"> <span class='empty-name'> * Required</span> </label>
          <label>   <textarea name="message" class="message" required placeholder="Your Insight" id="message" cols="30" rows="10"></textarea> <span class='empty-comment'> * Required</spa></label>
           <button type="submit" data-id='${newMovies.id}' class="add-comment">Comment</button>
        `;
@@ -87,40 +86,6 @@ const showPopupDialog = async () => {
   popup.appendChild(formContainer);
 };
 
-popup.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (e.target.classList.contains('add-comment')) {
-    const userName = document.querySelector('input').value;
-    const message = document.querySelector('textarea').value;
-    const emptyUser = document.querySelector('.empty-name');
-    const emptyComment = document.querySelector('.empty-comment');
-    if (userName === '' && message === '') {
-      emptyComment.style.display = 'block';
-      emptyUser.style.display = 'block';
-    } else if (userName === '') {
-      emptyUser.style.display = 'block';
-      emptyComment.style.display = 'none';
-    } else if (message === '') {
-      emptyComment.style.display = 'block';
-      emptyUser.style.display = 'none';
-    } else {
-      const { id } = e.target.dataset.id;
-      addComment(id, userName, message);
-      emptyComment.style.display = 'none';
-      emptyUser.style.display = 'none';
-      document.querySelector('input').value = '';
-      document.querySelector('textarea').value = '';
-    }
-  }
-});
 
-popup.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (e.target.classList.contains('close-btn')) {
-    document.querySelector('main').style.display = 'flex';
-    document.querySelector('.popup-dialog').style.display = 'none';
-    body.style.backgroundColor = '#fff';
-  }
-});
 
 export default showPopupDialog;
