@@ -1,6 +1,7 @@
 import updateCounter from './updateCommentCounter.js';
 
-const commenuURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/W1bATIF3NbkGkB344Lpb/comments';
+const commenuURL =
+  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/ggZLPPwjynSGZI0V2o7g/comments";
 const addComment = async (movieID, userName, message) => {
   try {
     const result = await fetch(commenuURL, {
@@ -14,6 +15,7 @@ const addComment = async (movieID, userName, message) => {
         comment: message,
       }),
     });
+
     updateCounter(userName, message);
     return await result.text();
   } catch (error) {
