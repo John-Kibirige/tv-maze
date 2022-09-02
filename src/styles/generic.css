@@ -38,6 +38,10 @@ header {
   padding-inline: 13px;
   margin-bottom: 12px;
   background-color: var(--black);
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
 }
 
 header ul {
@@ -62,12 +66,10 @@ header ul li.active {
 }
 
 footer {
-  width: 90%;
   margin: 0 auto;
   display: flex;
   column-gap: 8px;
   text-align: left;
-  border: 3px solid #333;
   align-items: center;
 }
 
@@ -86,6 +88,10 @@ footer p {
     margin-right: 38px;
     font-size: 20px;
   }
+}
+
+main {
+  margin-top: 52px;
 }
 
 .show-count {
