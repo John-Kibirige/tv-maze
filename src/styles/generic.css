@@ -2,10 +2,11 @@
 
 :root {
   --bg-dark: #2b2727;
-  --black: #000000;
+  --black: #000;
   --text-color: #fff;
   --primary-txt: #f00;
 }
+
 html {
   box-sizing: border-box;
   font-size: 100%;
