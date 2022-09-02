@@ -14,6 +14,7 @@ export const addComment = async (movieID, userName, message) => {
         comment: message,
       }),
     });
+    updateCounter(userName,message)
     return await result.text();
   } catch (error) {}
 };
