@@ -13,6 +13,11 @@
 
 .show-items li {
   list-style-type: none;
+  border-radius: 7px;
+  background: #1e1d1d;
+  box-shadow: 1px 1px 16px var(--black);
+
+  height: 90%;
 }
 
 .show-image {
@@ -23,12 +28,14 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  padding-inline: 10px;
 }
 
 .like-text {
   text-align: right;
   margin-block: 10px;
   font-size: 14px;
+  padding-inline: 12px;
 }
 
 .comment-btn {
@@ -43,6 +50,11 @@
   font-weight: 500;
   font-size: 17px;
   cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.comment-btn:hover {
+  background-color: var(--hover-color);
 }
 
 @media (min-width: 768px) {
@@ -50,12 +62,8 @@
     padding: 25px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 3%;
+    column-gap: 3%;
     margin-inline: auto;
-  }
-
-  .show-items li {
-    list-style-type: none;
   }
 
   .movie-title {

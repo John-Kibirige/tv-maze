@@ -5,8 +5,8 @@
   --black: #000;
   --text-color: #fff;
   --primary-txt: #f00;
+  --hover-color: #dc8383;
 }
-
 html {
   box-sizing: border-box;
   font-size: 100%;
