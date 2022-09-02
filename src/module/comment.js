@@ -4,12 +4,15 @@ const popup = document.querySelector(".popup-dialog");
 const formContainer = document.createElement("form");
 const body = document.querySelector("body");
 const commentContainer = document.createElement("div");
+commentContainer.className='comment-container'
 import close from "../../images/close.png";
+import {addComment} from './addcomment';
+import { getComment } from './getComment';
+import Counters from './commentcounter';
 
 formContainer.className = "form";
 
-const commenuURL =
-  "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/jlXT5H1Goew47u6aRNRF/comments";
+
 const tv = [
   {
     id: 1,
@@ -45,17 +48,14 @@ export const showPopupDialog = async (id) => {
   const commentCounter = document.createElement("h2");
   const newMovies = tv[0];
   const comments = await getComment(newMovies["id"]);
-  const totalComment = comments.length;
-
+  const totalComment = await Counters.counter(newMovies["id"]);
   body.style.backgroundColor = "#2f2f2f";
   main.style.display = "none";
   popup.style.display = "block";
-
   popup.innerHTML = `
         <div class="popup-top">
             <img src="${newMovies["image"]["medium"]}" class='popup-image' alt="image">
              <img src="${close}" class='close-btn' alt="image">
-               
         </div>
             <h2 class="title"> ${newMovies["name"]}</h2>
         <ul class="detail">
@@ -123,54 +123,10 @@ popup.addEventListener("click", (e) => {
   }
 });
 
-const updateCounter = (userName,message) => {
-  const count = document.querySelector(".comment-count");
-  const countValue = +count.textContent.trim();
-  count.innerHTML = `${countValue + 1}`;
-  const para = document.createElement("p");
-  para.className = "comment-list";
-  const today = new Date();
-
-  para.innerHTML = `${
-    today.getFullYear() + "-" + (+today.getMonth() + 1) + "-" + today.getDate()
-  } ${userName} : ${message}`;
-  commentContainer.appendChild(para);
-};
-
-const addComment = async (movieID, userName, message) => {
-
-  try {
-    await fetch(commenuURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        item_id: movieID,
-        username: userName,
-        comment: message,
-      }),
-    });
-
-    updateCounter(userName, message);
- 
-  } catch (error) {}
-};
 
 
 
-const getComment = async (id) => {
-  try {
-    const result = await fetch(commenuURL + `?item_id=${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
 
-    const comments = await await result.json();
-    if (comments["error"]) {
-      return [];
-    } else return comments;
-  } catch (error) {}
-};
+
+
+
