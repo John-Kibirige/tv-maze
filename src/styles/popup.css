@@ -44,8 +44,12 @@ body {
 }
 
 .comment-list {
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.03em;
+  border-bottom: #333 1px solid;
+  padding: 10px;
+  color: #2f2f2f;
+  
 }
 
 .form {
@@ -90,7 +94,9 @@ body {
   display: none;
 }
 
-@media screen and (min-width: 767px) {
+
+
+@media screen and (min-width: 768px) {
   .popup-dialog {
     min-height: 40%;
     width: 40%;
