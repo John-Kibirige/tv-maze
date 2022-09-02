@@ -36,7 +36,8 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack serve --open",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
