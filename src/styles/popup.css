@@ -49,7 +49,6 @@ body {
   border-bottom: #333 1px solid;
   padding: 10px;
   color: #2f2f2f;
-  
 }
 
 .form {
@@ -93,8 +92,6 @@ body {
   font-weight: bold;
   display: none;
 }
-
-
 
 @media screen and (min-width: 768px) {
   .popup-dialog {
