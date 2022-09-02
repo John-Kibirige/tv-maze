@@ -11,7 +11,7 @@ const generateSingleShow = (imageUrl, name, id) => {
             <img class="like-icon" src="${likeIcon}" alt="like" />
         </div>
        <p class="like-text"><span id="span${id}" class="num-likes">0</span> like(s)</p>
-        <button class="comment-btn" id="comm${id}" >Comments</button>
+        <button class="comment-btn" data-id="${id}" >Comments</button>
     `;
 
   return li;

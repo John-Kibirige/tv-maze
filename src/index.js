@@ -11,11 +11,10 @@ const showCount = document.querySelector('.show-count');
 tvMazeLogo.src = logo;
 
 const renderLikes = (listItem) => {
-  const likeSpan = listItem.querySelector('.num-likes');
   getLikes().then((response) => {
     response.forEach((e) => {
       if (e.item_id === `${listItem.id}`) {
-        likeSpan.innerText = e.likes;
+        listItem.querySelector('.num-likes').innerText = e.likes;
       }
     });
   });
@@ -26,6 +25,7 @@ const displayMovies = async () => {
   try {
     const responses = await getData();
     showCount.innerText = `${responses.length}`;
+
     responses.forEach((response) => {
       let {
         id,
@@ -43,8 +43,17 @@ const displayMovies = async () => {
       icon.addEventListener('click', (e) => {
         const listItem = e.target.parentElement.parentElement;
         addLike(listItem.id);
-        renderLikes(listItem);
+        const spanEle = e.target.parentElement.nextElementSibling.children[0];
+        const prevLikes = +spanEle.innerText;
+        spanEle.innerText = prevLikes + 1;
       });
+    });
+
+    // implement the comment feature
+    document.querySelector('.show-items').addEventListener('click', (e) => {
+      if (e.target.classList.contains('comment-btn')) {
+        // code
+      }
     });
 
     document.querySelectorAll('.show').forEach((show) => {
