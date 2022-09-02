@@ -27,7 +27,7 @@ const displayMovies = async () => {
     showCount.innerText = `${responses.length}`;
 
     responses.forEach((response) => {
-      let {
+      const {
         id,
         image: { original: imageUrl },
         name,

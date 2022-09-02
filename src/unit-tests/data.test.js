@@ -1,5 +1,6 @@
-jest.mock('../modules/data.js');
 import getData from '../__mocks__/data.js';
+
+jest.mock('../modules/data.js');
 
 describe('This test checks if the data is received from the api ', () => {
   test('Check if the right id is received', () => {

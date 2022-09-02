@@ -1,4 +1,5 @@
 import { getLikes, postLike } from '../__mocks__/involvmentapi.js';
+
 jest.mock('../modules/involvmentapi.js');
 
 describe('Test for posting and getting a like(s) via the involvement api ', () => {
