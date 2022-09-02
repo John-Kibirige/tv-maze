@@ -1,18 +1,17 @@
-
 export default class Display {
   static noneComment = (emptyComment) => {
-    emptyComment.style.display = "none";
+    emptyComment.style.display = 'none';
   };
 
   static blockComment = (emptyComment) => {
-    emptyComment.style.display = "block";
+    emptyComment.style.display = 'block';
   };
 
   static noneUser = (emptyUser) => {
-    emptyUser.style.display = "none";
+    emptyUser.style.display = 'none';
   };
 
   static blockUser = (emptyUser) => {
-    emptyUser.style.display = "block";
+    emptyUser.style.display = 'block';
   };
 }
