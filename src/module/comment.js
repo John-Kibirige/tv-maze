@@ -72,7 +72,7 @@ const showPopupDialog = async () => {
   comments.forEach((movie) => {
     const para = document.createElement("p");
     para.className = "comment-list";
-    para.innerHTML = `${movie.creation_date}  ${movie.username} : ${movie.comment}`;
+    para.innerHTML = `Post Date : ${movie.creation_date} User : ${movie.username} Comment :  ${movie.comment}`;
     commentContainer.appendChild(para);
   });
   popup.appendChild(commentContainer);
