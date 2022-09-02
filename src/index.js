@@ -10,13 +10,12 @@ const showCount = document.querySelector('.show-count');
 
 tvMazeLogo.src = logo;
 
-const renderLikes = (listItem) => {
-  getLikes().then((response) => {
-    response.forEach((e) => {
-      if (e.item_id === `${listItem.id}`) {
-        listItem.querySelector('.num-likes').innerText = e.likes;
-      }
-    });
+const renderLikes = async (listItem) => {
+  const response = await getLikes();
+  response.forEach((e) => {
+    if (e.item_id === `${listItem.id}`) {
+      listItem.querySelector('.num-likes').innerText = e.likes;
+    }
   });
 };
 
