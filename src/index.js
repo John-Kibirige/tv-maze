@@ -1,11 +1,11 @@
-import './styles/tvmaze.css';
-import showPopupDialog from './module/comment.js';
+import "./styles/tvmaze.css";
+import showPopupDialog from "./module/comment.js";
 import addComment from "./module/addcomment.js";
-
+import Display from "./module/display.js";
 const popup = document.querySelector(".popup-dialog");
 const body = document.querySelector("body");
 
-document.querySelector('.all-comment').addEventListener('click', (e) => {
+document.querySelector(".all-comment").addEventListener("click", (e) => {
   const { id } = e.target.dataset;
   showPopupDialog(id);
 });
@@ -15,22 +15,23 @@ popup.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-comment")) {
     const userName = document.querySelector("input").value;
     const message = document.querySelector("textarea").value;
-    const emptyUser = document.querySelector(".empty-name");
-    const emptyComment = document.querySelector(".empty-comment");
+const emptyUser = document.querySelector(".empty-name");
+const emptyComment = document.querySelector(".empty-comment");
+
     if (userName === "" && message === "") {
-      emptyComment.style.display = "block";
-      emptyUser.style.display = "block";
+      Display.blockComment(emptyComment);
+      Display.blockUser(emptyUser);
     } else if (userName === "") {
-      emptyUser.style.display = "block";
-      emptyComment.style.display = "none";
+      Display.blockUser(emptyUser);
+      Display.noneComment(emptyComment);
     } else if (message === "") {
-      emptyComment.style.display = "block";
-      emptyUser.style.display = "none";
+      Display.blockComment(emptyComment);
+      Display.noneUser(emptyUser);
     } else {
-      const { id } = e.target.dataset.id;
-      addComment(id, userName, message);
-      emptyComment.style.display = "none";
-      emptyUser.style.display = "none";
+
+      addComment(e.target.dataset.id, userName, message);
+      Display.noneUser(emptyUser);
+      Display.noneComment(emptyComment);
       document.querySelector("input").value = "";
       document.querySelector("textarea").value = "";
     }
