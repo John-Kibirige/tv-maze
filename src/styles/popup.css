@@ -7,6 +7,9 @@
   padding-bottom: 32px;
   border: 2px solid #333;
   background-color: #f7f7f7f1;
+  position: absolute;
+  top: 1px;
+  right: 50px;
 }
 
 .popup-top {
@@ -23,6 +26,7 @@
 .title {
   text-align: center;
   padding: 8px;
+  color: var(--bg-dark);
 }
 
 .detail {
@@ -37,6 +41,10 @@
 .detail li {
   font-weight: 700;
   letter-spacing: 0.03em;
+  color: #333;
+}
+.comment-container{
+margin: 15px;
 }
 
 .comment-list {
@@ -92,8 +100,10 @@
 @media screen and (min-width: 768px) {
   .popup-dialog {
     min-height: 40%;
-    width: 40%;
+    width: 60%;
     margin: 16px auto;
+        top: 176px;
+    right: 275px;
   }
 
   .popup-top {
