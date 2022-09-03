@@ -1,10 +1,8 @@
-
-
-const counter = async (id) => {
-   const comments= [
-      { item_id: 1, username: "meshu", comment: "Love it seriously" },
-      { item_id: 1, username: "meshu", comment: "Love it seriously" },
-    ];
+const counter = async () => {
+  const comments = [
+    { item_id: 1, username: 'meshu', comment: 'Love it seriously' },
+    { item_id: 1, username: 'meshu', comment: 'Love it seriously' },
+  ];
   return comments.length;
 };
 
