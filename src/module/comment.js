@@ -21,7 +21,6 @@ const showPopupDialog = async (id) => {
 
   const newMovies = result[index];
   const comments = await getComment(newMovies.id);
-
   const totalComment = await counter(newMovies.id);
   body.style.backgroundColor = "#2f2f2f";
   main.style.display = "none";
