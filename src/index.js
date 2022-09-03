@@ -104,6 +104,5 @@ popup.addEventListener('click', (e) => {
   if (e.target.classList.contains('close-btn')) {
     document.querySelector('main').style.display = 'flex';
     document.querySelector('.popup-dialog').style.display = 'none';
-    body.style.backgroundColor = '#fff';
   }
 });

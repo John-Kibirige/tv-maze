@@ -8,7 +8,6 @@ import getData from '../modules/data.js';
 const main = document.querySelector('main');
 const popup = document.querySelector('.popup-dialog');
 const formContainer = document.createElement('form');
-const body = document.querySelector('body');
 const commentContainer = document.createElement('div');
 commentContainer.className = 'comment-container';
 
@@ -23,7 +22,6 @@ const showPopupDialog = async (id) => {
   const comments = await getComment(newMovies.id);
 
   const totalComment = await counter(newMovies.id);
-  body.style.backgroundColor = '#2f2f2f';
   main.style.display = 'none';
   popup.style.display = 'block';
   popup.innerHTML = `
