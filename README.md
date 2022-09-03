@@ -9,7 +9,11 @@ Your site for watching any movie for free.
 
 ## Live Demo
 
+[https://john-kibirige.github.io/tv-maze/](https://john-kibirige.github.io/tv-maze/)
+
 ## Video description
+
+[Video description](https://drive.google.com/file/d/1I-L7Mm9XUsEtWLLenc9ZfN78tgYzMHJ7/view?usp=sharing)
 
 ## Getting Started
 
@@ -52,8 +56,8 @@ These were linter tests mainly
 👤 **Melashu Amari**
 
 - [Github](https://github.com/melashu)
-- [Twitter]()
-- [LinkedIn]()
+- [Twitter](https://twitter.com/meshu102)
+- [LinkedIn](https://twitter.com/home)
 
 👤 **Kibirige John**
 
