@@ -9,6 +9,7 @@ const getComment = async (id) => {
     });
 
     const comments = await result.json();
+
     if (comments.error) {
       return [];
     } return comments;
