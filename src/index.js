@@ -9,7 +9,6 @@ import addComment from './module/addcomment.js';
 import Display from './module/display.js';
 
 const popup = document.querySelector('.popup-dialog');
-const body = document.querySelector('body');
 const showItems = document.querySelector('.show-items');
 const tvMazeLogo = document.querySelector('.logo');
 const showCount = document.querySelector('.show-count');
