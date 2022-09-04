@@ -9,7 +9,7 @@ Your site for watching any movie for free.
 
 ## Live Demo
 
-[https://john-kibirige.github.io/tv-maze/](https://john-kibirige.github.io/tv-maze/)
+[Go live](https://john-kibirige.github.io/tv-maze/)
 
 ## Video description
 
